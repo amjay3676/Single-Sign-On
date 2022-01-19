@@ -2,16 +2,16 @@ const express = require("express");
 const app = express();
 const { auth, requiresAuth } = require("express-openid-connect");
 require("dotenv").config();
-// require("dotenv").config({ path: __dirname + "./.env" });
+require("dotenv").config({ path: __dirname + "./.env" });
 // console.log(process.env.ISSUER_BASE);
 app.use(
   auth({
     authRequired: false,
     auth0Logout: true,
-    issuerBaseURL: "https://dev-amjay3606.us.auth0.com",
-    baseURL: "http://localhost:3000",
-    clientID: "to2SzRN97wKxaGEgLSmhKwrF8lNGV4H0",
-    secret: "SRjqCNPh6Le9i2xqNELZilfmCla32bP8ZzNXjso0cnNogTq0-JqFs2_HpYgjRFvZ",
+    issuerBaseURL: process.env.ISSUER_BASE,
+    baseURL: process.env.BASE_URL,
+    clientID: process.env.CLIENT_ID,
+    secret: process.env.SECRET,
   })
 );
 app.get("/", (req, res) => {
